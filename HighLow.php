@@ -1,13 +1,32 @@
 <?php
 
+if ($argc == 3) {
+	$min = $argv[1];
+	$max = $argv[2];
+} else if ($argc == 2) {
+	$min = $argv[1];
+	$max = $argv[1] *2;
+	echo"Your input was partially invalid, switsching 'max' to double the value of 'min'\n";
+} else if ($argc == 1) {
+	$min = 100;
+	$max = 200;
+	echo"Your input was invalid, switsching to default\n";
+} else {
+	$min = 100;
+	$max = 200;
+	echo"Your input was invalid, switching to default:\n";
+	
+
+}
+
 
 
 
 // Write the output
 // Notice the space after the ?
 do {
-$correct = rand(1, 100);
-fwrite(STDOUT, 'I want you to guess a number between 1 and 100? ');
+$correct = mt_rand($min, $max);
+fwrite(STDOUT, "I want you to guess a number between $min and $max? ");
 do {	// Get the input from user
 	$guess = fgets(STDIN);
 	$guess = trim($guess);
